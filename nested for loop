@@ -1,0 +1,81 @@
+def giris_al():
+    harf=input("Harf giriniz(N,X,Z,F,P,R): ").upper()
+    size=int(input("Harfin boyutunu giriniz(çift sayı): "))
+    return harf,size
+
+f_harf,f_size = giris_al()
+
+def harf_N(f_size):
+    for i in range(1,f_size):
+        for j in range(1,f_size):
+            if j == 1 or i == j or j == f_size-1:
+                print("* ", end="")
+            else:
+                print("  ", end="")
+        print("")
+
+def harf_X(f_size):
+    for i in range(1,f_size):
+        for j in range(1,f_size):
+            if i == j or i+j == f_size:
+                print("* ", end="")
+            else:
+                print("  ", end="")
+        print("")
+
+def harf_Z(f_size):
+    for i in range(1,f_size):
+        for j in range(1,f_size):
+            if i == 1 or i+j == f_size or i == f_size-1:
+                print("* ", end="")
+            else:
+                print("  ", end="")
+        print("")
+
+def harf_F(f_size):
+    for i in range(1,f_size):
+        for j in range(1,f_size):
+            if j == 1 or i == 1 and j <= f_size/2+1 or i == f_size/2 and j <= f_size/2 :
+                print("* ", end="")
+            else:
+                print("  ", end="")
+        print("")
+
+def harf_P(f_size):
+    for i in range(1,f_size):
+        for j in range(1,f_size):
+            if j == 1 or \
+               (i == 1 and j <= f_size/2) or (i == f_size/2 and j <= f_size/2) or (j == f_size - 1 and i <= f_size / 2):
+                print("* ", end="")
+            else:
+                print(" ", end="")
+        print()
+
+def harf_R(f_size):
+    for i in range(1,f_size):
+        for j in range(1,f_size):
+            if j == 1 or \
+                (i == f_size / 2 and j < f_size/2) or \
+                  (j == f_size - 1 and i <= f_size/2) or (j == i and j >= f_size/2) or (i == 1 and j < f_size/2):
+                print("* ", end="")
+            else:
+                print(" ", end="")
+        print()
+
+def  harf_sec_ve_ciz(f_harf, f_size):
+    if f_harf == "N" :
+        harf_N(f_size)
+    elif f_harf == "X" :
+        harf_X(f_size)
+    elif f_harf == "Z" :
+        harf_Z(f_size)
+    elif f_harf == "F" :
+        harf_F(f_size)
+    elif f_harf == "P" :
+        harf_P(f_size)
+    elif f_harf == "R" :
+        harf_R(f_size)
+    else :
+        print("yanlış harf girdiniz.")
+
+harf_sec_ve_ciz(f_harf,f_size)
