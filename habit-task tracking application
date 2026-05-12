@@ -1,0 +1,41 @@
+gorevler = []
+tamamlananlar = []
+
+def gorev_ekle():
+   isim = input("Görev adı: ")
+   gorevler.append(isim)
+
+def gorev_listele():
+   print("\n--- Görevler ---")
+   for i, g in enumerate(gorevler):
+       print(i, "-", g)
+
+def gorev_tamamla():
+   gorev_listele()
+   secim = int(input("Tamamlanan görev numarasını girin: "))
+   tamamlananlar.append(gorevler.pop(secim))
+
+def tamamlanan_liste():
+   print("\n--- Tamamlananlar ---")
+   for t in tamamlananlar:
+       print(t)
+
+while True:
+   print("\n1- Görevleri Listele")
+   print("2- Görev Ekle")
+   print("3- Görev Tamamla")
+   print("4- Tamamlananlar")
+   print("5- Çıkış")
+
+   secim = input("Seçim: ")
+
+   if secim == "1":
+       gorev_listele()
+   elif secim == "2":
+       gorev_ekle()
+   elif secim == "3":
+       gorev_tamamla()
+   elif secim == "4":
+       tamamlanan_liste()
+   elif secim == "5":
+       break
