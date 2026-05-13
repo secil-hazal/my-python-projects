@@ -1,0 +1,114 @@
+import random
+
+class Ogrenci:
+    def __init__(self, ad, soyad, notu):
+        self.ad = ad
+        self.soyad = soyad
+        self.notu = notu
+
+    def bilgiyi_goster(self):
+        print("Ad:", self.ad)
+        print("Soyad:", self.soyad)
+        print("Not:", self.notu)
+
+ogrenciler = [
+    Ogrenci("Mehmet", "Yılmaz", 72),
+    Ogrenci("Elif", "Kaya", 90),
+    Ogrenci("Can", "Arslan", 68)]
+
+def ogrencileri_listele():
+    if len(ogrenciler) == 0:
+        print("Listede öğrenci yok.")
+    else:
+        print("\nÖĞRENCİLER")
+        for ogrenci in ogrenciler:
+            print(ogrenci.ad, ogrenci.soyad, "-", ogrenci.notu)
+
+def ogrenci_ekle():
+    ad = input("Öğrencinin adını yaz: ")
+    soyad = input("Öğrencinin soyadını yaz: ")
+    notu = int(input("Öğrencinin notunu yaz: "))
+
+    yeni_ogrenci = Ogrenci(ad, soyad, notu)
+    ogrenciler.append(yeni_ogrenci)
+
+    print("Öğrenci eklendi.")
+
+def ogrenci_sil():
+    silinecek_ad = input("Silmek istediğin öğrencinin adını yaz: ")
+    silinecek_soyad = input("Silmek istediğin öğrencinin soyadını yaz: ")
+
+    for ogrenci in ogrenciler:
+        if ogrenci.ad.lower() == silinecek_ad.lower() and ogrenci.soyad.lower() == silinecek_soyad.lower():
+            ogrenciler.remove(ogrenci)
+            print("Öğrenci silindi.")
+            return
+
+    print("Öğrenci bulunamadı.")
+
+def ogrenci_bilgisi_goster():
+    aranan_ad = input("Bilgisini görmek istediğin öğrencinin adını yaz: ")
+    aranan_soyad = input("Bilgisini görmek istediğin öğrencinin soyadını yaz: ")
+
+    for ogrenci in ogrenciler:
+        if ogrenci.ad.lower() == aranan_ad.lower() and ogrenci.soyad.lower() == aranan_soyad.lower():
+            ogrenci.bilgiyi_goster()
+            return
+
+    print("Öğrenci bulunamadı.")
+
+def not_ortalamasi_goster():
+    if len(ogrenciler) == 0:
+        print("Ortalama hesaplanamadı.")
+    else:
+        toplam = 0
+
+        for ogrenci in ogrenciler:
+            toplam = toplam + ogrenci.notu
+
+        ortalama = toplam / len(ogrenciler)
+        print("Sınıf ortalaması:", ortalama)
+
+def rastgele_ogrenci_sec():
+    if len(ogrenciler) == 0:
+        print("Listede öğrenci yok.")
+    else:
+        secilen_ogrenci = random.choice(ogrenciler)
+        print("Bugünün seçilen öğrencisi:", secilen_ogrenci.ad, secilen_ogrenci.soyad)
+
+while True:
+    print("\n--- MENÜ ---")
+    print("1 - Öğrencileri listele")
+    print("2 - Yeni öğrenci ekle")
+    print("3 - Öğrenci sil")
+    print("4 - Öğrenci bilgisi göster")
+    print("5 - Not ortalamasını göster")
+    print("6 - Rastgele öğrenci seç")
+    print("7 - Çıkış")
+
+    secim = input("Seçim yap: ")
+
+    if secim == "1":
+        ogrencileri_listele()
+
+    elif secim == "2":
+        ogrenci_ekle()
+
+    elif secim == "3":
+        ogrenci_sil()
+
+    elif secim == "4":
+        ogrenci_bilgisi_goster()
+
+    elif secim == "5":
+        not_ortalamasi_goster()
+
+    elif secim == "6":
+        rastgele_ogrenci_sec()
+
+    elif secim == "7":
+        print("Program kapandı.")
+        break
+
+    else:
+        print("Hatalı seçim yaptın.")
