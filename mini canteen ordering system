@@ -1,0 +1,24 @@
+from tkinter import *
+pencere=Tk()
+pencere.geometry("500x500")
+pencere.title("kantin sipariş paneli")
+pencere.configure(background="navy")
+
+Label(pencere, text="ürün seç", foreground="white", background="navy", font=("arial",14,"bold")).pack()
+
+liste=Listbox(pencere,bg="white", height=6, width=20, foreground="black", selectbackground="lightgreen")
+urunler=["tost", "ayran", "sandviç", "meyve suyu", "simit"]
+
+for i in range(len(urunler)):
+    liste.insert(i,urunler[i])
+    
+def secilen():
+    secildi=liste.get(liste.curselection())
+    print(secildi)
+    
+liste.pack()
+
+siparis_goster_buton=Button(pencere, text="sipariş göster", background="lightgreen", width=15, command=secilen)
+siparis_goster_buton.pack()
+
+pencere.mainloop()
